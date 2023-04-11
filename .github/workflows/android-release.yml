@@ -23,7 +23,7 @@ jobs:
           cache: true
       - name: Get dependencies
         run: flutter pub get
-      - name: Start release build
-        run: |
-          flutter build apk 
-          flutter build appbundle
+      - name: Start build apk
+        run: flutter build apk
+      - name: Start build appbundle
+        run: flutter build appbundle
