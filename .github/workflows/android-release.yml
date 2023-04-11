@@ -24,5 +24,4 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Start release build
-        run: flutter build apk
-             flutter build appbundle
+        run: [flutter build apk, flutter build appbundle]
