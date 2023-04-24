@@ -1,21 +1,18 @@
 class Question {
   final String text;
-  final List<String> correctAnswers;
-  final List<String> wrongAnswers;
+  final List<String> answers;
+  final int correctAnswer;
 
   const Question({
     required this.text,
-    required this.correctAnswers,
-    required this.wrongAnswers,
+    required this.answers,
+    required this.correctAnswer,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-      correctAnswers:
-          (json['correctAnswers'] as List).map((e) => e as String).toList(),
-      text: json['text'],
-      wrongAnswers:
-          (json['wrongAnswers'] as List).map((e) => e as String).toList(),
-    );
+        answers: (json['Answers'] as List).map((e) => e as String).toList(),
+        text: json['text'],
+        correctAnswer: json['correctAnswer']);
   }
 }
