@@ -15,9 +15,7 @@ jobs:
            flutter-version: "3.7.10"
            channel: 'beta'
            cache: true
-       - name: Get dependencies
-          run: flutter pub get
        - name: Config
-          run: flutter config --enable-windows-desktop
+         run: flutter config --enable-windows-desktop
        - name: Build
-          run: flutter build windows
+         run: flutter build windows
