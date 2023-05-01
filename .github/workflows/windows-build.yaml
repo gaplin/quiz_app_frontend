@@ -1,0 +1,23 @@
+name: Windows Build
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:  
+  build:
+     runs-on: windows-latest
+     steps:
+       - uses: actions/checkout@v3
+       - uses: subosito/flutter-action@v2
+         with:
+           flutter-version: "3.7.10"
+           channel: 'beta'
+           cache: true
+       - name: Get dependencies
+          run: flutter pub get
+       - name: Config
+          run: flutter config --enable-windows-desktop
+       - name: Build
+          run: flutter build windows
