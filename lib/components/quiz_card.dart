@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/quiz.dart';
+import '../pages/quiz_page.dart';
 
 class QuizCard extends StatelessWidget {
   const QuizCard({
@@ -19,7 +20,10 @@ class QuizCard extends StatelessWidget {
     return Card(
       color: theme.colorScheme.primary,
       child: InkWell(
-        onTap: () => {},
+        onTap: () => {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => QuizPage(quizId: quiz.id)))
+        },
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Text(

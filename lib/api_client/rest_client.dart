@@ -17,4 +17,19 @@ class RestClient {
       throw Exception('Failed to load all quizzes');
     }
   }
+
+  Future<Quiz> getShuffledQuizById(String id) async {
+    var queryParams = {
+      'shuffle': 'true',
+    };
+    var path = 'quizzes/$id';
+    var uri = Uri.https(_apiUrl, path, queryParams);
+    final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      return Quiz.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load quiz');
+    }
+  }
 }
