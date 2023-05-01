@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../components/quiz_card.dart';
-import '../model/quiz.dart';
+import '../model/quiz_base.dart';
 
 class QuizzesGridView extends StatelessWidget {
-  final Future<List<Quiz>> quizzes;
+  final Future<List<QuizBase>> quizzes;
 
   const QuizzesGridView({
     super.key,
@@ -13,7 +13,7 @@ class QuizzesGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Quiz>>(
+    return FutureBuilder<List<QuizBase>>(
       future: quizzes,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -30,7 +30,7 @@ class QuizzesGridView extends StatelessWidget {
 }
 
 class _QuizzesGrid extends StatelessWidget {
-  final List<Quiz> quizzes;
+  final List<QuizBase> quizzes;
   const _QuizzesGrid({
     required this.quizzes,
   });

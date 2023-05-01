@@ -4,15 +4,17 @@ import '../consts.dart';
 import '../model/quiz.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/quiz_base.dart';
+
 class RestClient {
   final String _apiUrl = Consts.apiUrl;
 
-  Future<List<Quiz>> getAllQuizzes() async {
-    final response = await http.get(Uri.https(_apiUrl, 'quizzes'));
+  Future<List<QuizBase>> getAllQuizzes() async {
+    final response = await http.get(Uri.https(_apiUrl, 'quizzes/baseInfo'));
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
-      return jsonResponse.map((quiz) => Quiz.fromJson(quiz)).toList();
+      return jsonResponse.map((quiz) => QuizBase.fromJson(quiz)).toList();
     } else {
       throw Exception('Failed to load all quizzes');
     }

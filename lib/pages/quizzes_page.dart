@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_frontend/view/quizzes_grid_view.dart';
 
 import '../api_client/rest_client.dart';
-import '../model/quiz.dart';
+import '../model/quiz_base.dart';
 
 class QuizzesPage extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class QuizzesPage extends StatefulWidget {
 
 class _QuizzesPageState extends State<QuizzesPage> {
   final RestClient client = RestClient();
-  late Future<List<Quiz>> quizzes;
+  late Future<List<QuizBase>> quizzes;
 
   @override
   Widget build(BuildContext context) {

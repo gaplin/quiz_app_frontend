@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/quiz.dart';
+import '../model/quiz_base.dart';
 import '../pages/quiz_page.dart';
 
 class QuizCard extends StatelessWidget {
@@ -9,7 +9,7 @@ class QuizCard extends StatelessWidget {
     required this.quiz,
   });
 
-  final Quiz quiz;
+  final QuizBase quiz;
 
   @override
   Widget build(BuildContext context) {
