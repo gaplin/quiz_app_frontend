@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app_frontend/view/quizzes_grid_view.dart';
+import 'package:quiz_app_frontend/components/quizzes_grid.dart';
 
 import '../api_client/rest_client.dart';
 import '../model/quiz_base.dart';
@@ -17,7 +17,7 @@ class _QuizzesPageState extends State<QuizzesPage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: QuizzesGridView(
+      child: QuizzesGrid(
         quizzes: quizzes,
       ),
     );

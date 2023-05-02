@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../components/quiz_card.dart';
+import 'quiz_card.dart';
 import '../model/quiz_base.dart';
 
-class QuizzesGridView extends StatelessWidget {
+class QuizzesGrid extends StatelessWidget {
   final Future<List<QuizBase>> quizzes;
 
-  const QuizzesGridView({
+  const QuizzesGrid({
     super.key,
     required this.quizzes,
   });
