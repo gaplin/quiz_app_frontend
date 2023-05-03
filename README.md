@@ -1,3 +1,3 @@
-# quiz_app_frontend
+# QuizApp
 
-A new Flutter project.
+Simple QuizApp written in flutter.
