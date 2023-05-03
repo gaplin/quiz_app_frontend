@@ -4,34 +4,9 @@ import 'quiz_card.dart';
 import '../model/quiz_base.dart';
 
 class QuizzesGrid extends StatelessWidget {
-  final Future<List<QuizBase>> quizzes;
-
+  final List<QuizBase> quizzes;
   const QuizzesGrid({
     super.key,
-    required this.quizzes,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<QuizBase>>(
-      future: quizzes,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return _QuizzesGrid(
-            quizzes: snapshot.data!,
-          );
-        } else if (snapshot.hasError) {
-          return Text("Error");
-        }
-        return Text("");
-      },
-    );
-  }
-}
-
-class _QuizzesGrid extends StatelessWidget {
-  final List<QuizBase> quizzes;
-  const _QuizzesGrid({
     required this.quizzes,
   });
 
@@ -42,7 +17,10 @@ class _QuizzesGrid extends StatelessWidget {
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemCount: quizzes.length,
       itemBuilder: (context, index) {
-        return QuizCard(quiz: quizzes[index]);
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: QuizCard(quiz: quizzes[index]),
+        );
       },
     );
   }

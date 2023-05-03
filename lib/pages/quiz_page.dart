@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_frontend/components/custom_app_bar.dart';
 
 import '../api_client/rest_client.dart';
 import '../components/question_list_view.dart';
-import '../components/title_card.dart';
 import '../model/quiz.dart';
 
 class QuizPage extends StatefulWidget {
@@ -38,30 +38,33 @@ class _QuizPageState extends State<QuizPage> {
         if (snapshot.hasData) {
           Quiz quiz = snapshot.data!;
           if (questionIndex < quiz.questions.length) {
-            return Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: 50),
-                  Center(
-                    child: Text(
-                      quiz.title,
-                      style: style,
-                    ),
-                  ),
-                  SizedBox(height: 100),
-                  Flexible(
-                    child: SizedBox(
-                      width: 900,
-                      child: QuestionListView(
-                        question: quiz.questions[questionIndex],
-                        callBack: callback,
+            return Scaffold(
+              appBar: CustomAppBar(),
+              body: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 50),
+                    Center(
+                      child: Text(
+                        quiz.title,
+                        style: style,
                       ),
                     ),
-                  )
-                ],
+                    SizedBox(height: 100),
+                    Flexible(
+                      child: SizedBox(
+                        width: 900,
+                        child: QuestionListView(
+                          question: quiz.questions[questionIndex],
+                          callBack: callback,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           } else {
