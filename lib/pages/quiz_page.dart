@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_frontend/components/custom_app_bar.dart';
+import 'package:quiz_app_frontend/pages/end_quiz_page.dart';
 
 import '../api_client/rest_client.dart';
 import '../components/question_list_view.dart';
@@ -68,7 +69,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
             );
           } else {
-            return Placeholder();
+            return EndQuizPage(
+              correctAnswers: score,
+              quiz: quiz,
+            );
           }
         } else if (snapshot.hasError) {
           return Text("Error");

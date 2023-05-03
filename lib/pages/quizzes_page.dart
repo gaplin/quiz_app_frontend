@@ -17,6 +17,9 @@ class _QuizzesPageState extends State<QuizzesPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimaryContainer,
+    );
     return FutureBuilder<List<QuizBase>>(
       future: quizzesFuture,
       builder: (context, snapshot) {
@@ -26,8 +29,20 @@ class _QuizzesPageState extends State<QuizzesPage> {
             appBar: CustomAppBar(),
             body: Container(
               color: theme.colorScheme.primaryContainer,
-              child: QuizzesGrid(
-                quizzes: quizzes,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Choose quiz',
+                    style: style,
+                  ),
+                  Flexible(
+                    child: QuizzesGrid(
+                      quizzes: quizzes,
+                    ),
+                  ),
+                ],
               ),
             ),
           );
