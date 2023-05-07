@@ -40,6 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
         child: Text('log in'),
       ));
+      result.add(SizedBox(width: 20));
       result.add(ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -51,6 +52,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Text('Register'),
       ));
     } else {
+      result.add(Text('Hello ${state.userName}'));
+      result.add(SizedBox(width: 30));
       result.add(ElevatedButton(
         onPressed: () async {
           await state.setToken(null);
@@ -58,6 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Text('log out'),
       ));
     }
+    result.add(SizedBox(width: 20));
     return result;
   }
 

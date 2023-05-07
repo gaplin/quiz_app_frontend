@@ -13,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  final client = RestClient(null);
+  final client = RestClient();
   TextEditingController userNameController = TextEditingController();
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

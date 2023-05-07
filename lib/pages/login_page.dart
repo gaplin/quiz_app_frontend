@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final client = RestClient(null);
+  final client = RestClient();
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 

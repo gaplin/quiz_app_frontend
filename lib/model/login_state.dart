@@ -27,7 +27,8 @@ class LoginState extends ChangeNotifier {
       _userId = decodedToken['Id'];
       _login = decodedToken['sub'];
       _userName = decodedToken['name'];
-      final client = RestClient(token);
+      RestClient.setToken(token);
+      final client = RestClient();
       _role = await client.getRole(_userId!);
     }
     notifyListeners();
