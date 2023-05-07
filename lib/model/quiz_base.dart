@@ -8,6 +8,7 @@ class QuizBase {
   final String title;
   final String category;
   final String author;
+  final String authorId;
   final int numberOfQuestions;
 
   QuizBase(
@@ -15,6 +16,7 @@ class QuizBase {
     this.title,
     this.category,
     this.author,
+    this.authorId,
     this.numberOfQuestions,
   );
 

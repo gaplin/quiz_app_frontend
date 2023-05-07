@@ -11,6 +11,7 @@ QuizBase _$QuizBaseFromJson(Map<String, dynamic> json) => QuizBase(
       json['title'] as String,
       json['category'] as String,
       json['author'] as String,
+      json['authorId'] as String,
       json['numberOfQuestions'] as int,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$QuizBaseToJson(QuizBase instance) => <String, dynamic>{
       'title': instance.title,
       'category': instance.category,
       'author': instance.author,
+      'authorId': instance.authorId,
       'numberOfQuestions': instance.numberOfQuestions,
     };
