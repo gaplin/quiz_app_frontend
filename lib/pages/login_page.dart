@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app_frontend/components/custom_app_bar.dart';
-import 'package:quiz_app_frontend/model/create_user_fields.dart';
+import 'package:quiz_app_frontend/model/credentials.dart';
 import 'package:quiz_app_frontend/model/login_state.dart';
 
 import '../api_client/rest_client.dart';
 
-class RegisterPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final client = RestClient(null);
-  TextEditingController userNameController = TextEditingController();
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController repeatedPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +34,6 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 16,
-                  ),
-                  child: TextFormField(
-                    controller: userNameController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), labelText: "UserName"),
-                    validator: (value) {
-                      if (value == null ||
-                          value.isEmpty ||
-                          value.length < 5 ||
-                          value.length > 20) {
-                        return 'Username must have more than 4 and less than 21 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -97,39 +75,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextFormField(
-                    controller: repeatedPasswordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Repeated password"),
-                    validator: (value) {
-                      if (value != passwordController.text) {
-                        return 'Passwords must match';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          final createUserFields = CreateUserFields(
+                          final credentials = Credentials(
                             loginController.text,
                             passwordController.text,
-                            userNameController.text,
                           );
-                          final token = await client.register(createUserFields);
+                          final token = await client.login(credentials);
                           if (token == null) {
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                    content: Text('Login already taken')),
+                                    content: Text('Invalid login or password')),
                               );
                             }
                           } else {

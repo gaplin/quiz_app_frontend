@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/login_state.dart';
+import '../pages/login_page.dart';
 import '../pages/register_page.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -30,7 +31,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     List<Widget> result = [];
     if (state.token == null) {
       result.add(ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => LoginPage(),
+            ),
+          );
+        },
         child: Text('log in'),
       ));
       result.add(ElevatedButton(
@@ -45,7 +52,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ));
     } else {
       result.add(ElevatedButton(
-        onPressed: () {},
+        onPressed: () async {
+          await state.setToken(null);
+        },
         child: Text('log out'),
       ));
     }

@@ -76,9 +76,13 @@ class RestClient {
   Future<String?> login(Credentials credentials) async {
     const path = '/login';
     final uri = Uri.https(_apiUrl, path);
-    final body = credentials.toJson();
+    final body = jsonEncode(credentials.toJson());
+    final headers = {
+      "Accept": "application/json",
+      "content-type": "application/json"
+    };
 
-    final response = await http.post(uri, body: body);
+    final response = await http.post(uri, body: body, headers: headers);
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
