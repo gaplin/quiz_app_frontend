@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:quiz_app_frontend/model/question.dart';
 
+part 'quiz.g.dart';
+
+@JsonSerializable()
 class Quiz {
   final String id;
   final String title;
@@ -7,23 +11,15 @@ class Quiz {
   final String author;
   final List<Question> questions;
 
-  const Quiz({
-    required this.id,
-    required this.title,
-    required this.category,
-    required this.author,
-    required this.questions,
-  });
+  Quiz(
+    this.id,
+    this.title,
+    this.category,
+    this.author,
+    this.questions,
+  );
 
-  factory Quiz.fromJson(Map<String, dynamic> json) {
-    return Quiz(
-      id: json['id'],
-      title: json['title'],
-      category: json['category'],
-      author: json['author'],
-      questions: (json['questions'] as List)
-          .map((e) => (Question.fromJson(e)))
-          .toList(),
-    );
-  }
+  factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuizToJson(this);
 }

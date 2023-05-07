@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_app_frontend/pages/quizzes_page.dart';
 
+import 'model/login_state.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => LoginState(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

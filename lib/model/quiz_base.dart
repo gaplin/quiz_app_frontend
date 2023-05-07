@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'quiz_base.g.dart';
+
+@JsonSerializable()
 class QuizBase {
   final String id;
   final String title;
@@ -5,20 +10,16 @@ class QuizBase {
   final String author;
   final int numberOfQuestions;
 
-  const QuizBase({
-    required this.id,
-    required this.title,
-    required this.category,
-    required this.author,
-    required this.numberOfQuestions,
-  });
+  QuizBase(
+    this.id,
+    this.title,
+    this.category,
+    this.author,
+    this.numberOfQuestions,
+  );
 
-  factory QuizBase.fromJson(Map<String, dynamic> json) {
-    return QuizBase(
-        id: json['id'],
-        title: json['title'],
-        category: json['category'],
-        author: json['author'],
-        numberOfQuestions: json['numberOfQuestions']);
-  }
+  factory QuizBase.fromJson(Map<String, dynamic> json) =>
+      _$QuizBaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuizBaseToJson(this);
 }
