@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:quiz_app_frontend/model/create_quiz_dto.dart';
 import 'package:quiz_app_frontend/model/create_user_fields.dart';
 import 'package:quiz_app_frontend/model/credentials.dart';
 
@@ -21,7 +22,7 @@ class RestClient {
   Future<List<QuizBase>> getAllQuizzes() async {
     final response = await http.get(Uri.https(_apiUrl, 'quizzes/baseInfo'));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((quiz) => QuizBase.fromJson(quiz)).toList();
     } else {
@@ -37,7 +38,7 @@ class RestClient {
     var uri = Uri.https(_apiUrl, path, queryParams);
     final response = await http.get(uri);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       return Quiz.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load quiz');
@@ -50,7 +51,7 @@ class RestClient {
     final headers = {HttpHeaders.authorizationHeader: 'Bearer $_token'};
     final response = await http.get(uri, headers: headers);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       return jsonDecode(response.body);
     } else {
       throw Exception('Failed to get role for userId $id');
@@ -68,7 +69,7 @@ class RestClient {
 
     final response = await http.post(uri, body: body, headers: headers);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       return jsonDecode(response.body);
     } else {
       return null;
@@ -86,10 +87,23 @@ class RestClient {
 
     final response = await http.post(uri, body: body, headers: headers);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       return jsonDecode(response.body);
     } else {
       return null;
     }
+  }
+
+  Future<bool> createQuiz(CreateQuizDTO dto) async {
+    const path = '/quizzes';
+    final uri = Uri.https(_apiUrl, path);
+    final body = jsonEncode(dto.toJson());
+    final headers = {
+      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.contentTypeHeader: "application/json",
+      HttpHeaders.authorizationHeader: "Bearer $_token"
+    };
+    final response = await http.post(uri, body: body, headers: headers);
+    return response.statusCode == HttpStatus.ok;
   }
 }
