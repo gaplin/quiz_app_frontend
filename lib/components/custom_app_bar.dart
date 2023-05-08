@@ -54,12 +54,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     } else {
       result.add(Text('Hello ${state.userName}'));
       result.add(SizedBox(width: 30));
-      result.add(ElevatedButton(
-        onPressed: () async {
-          await state.setToken(null);
-        },
-        child: Text('log out'),
-      ));
+      result.add(
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Placeholder(),
+              ),
+            );
+          },
+          child: Text('Create Quiz'),
+        ),
+      );
+      result.add(SizedBox(width: 30));
+      result.add(
+        ElevatedButton(
+          onPressed: () async {
+            await state.setToken(null);
+          },
+          child: Text('log out'),
+        ),
+      );
     }
     result.add(SizedBox(width: 20));
     return result;

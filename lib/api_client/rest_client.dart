@@ -13,11 +13,15 @@ import '../model/quiz_base.dart';
 
 class RestClient {
   final String _apiUrl = Consts.apiUrl;
-  static String? _token;
+  String? _token;
 
-  static void setToken(String? token) {
+  RestClient();
+
+  void setToken(String? token) {
     _token = token;
   }
+
+  RestClient.withToken(this._token);
 
   Future<List<QuizBase>> getAllQuizzes() async {
     final response = await http.get(Uri.https(_apiUrl, 'quizzes/baseInfo'));
