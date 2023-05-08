@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app_frontend/pages/quizzes_page.dart';
 
 import '../model/login_state.dart';
 import '../pages/create_quiz_page.dart';
@@ -17,10 +18,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           context,
         );
         return AppBar(
+          automaticallyImplyLeading: false,
           titleTextStyle: theme.textTheme.displaySmall!.copyWith(
             color: theme.colorScheme.onTertiaryContainer,
           ),
-          title: Text('QuizApp'),
+          title: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => QuizzesPage(),
+                    ),
+                  );
+                },
+                child: Text('QuizApp')),
+          ),
           backgroundColor: theme.colorScheme.tertiaryContainer,
           actions: actions,
         );
@@ -33,7 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (state.token == null) {
       result.add(ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => LoginPage(),
             ),
@@ -44,7 +57,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       result.add(SizedBox(width: 20));
       result.add(ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => RegisterPage(),
             ),
@@ -58,7 +71,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       result.add(
         ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => CreateQuizPage(),
               ),

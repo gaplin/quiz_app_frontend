@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app_frontend/components/custom_app_bar.dart';
 import 'package:quiz_app_frontend/model/credentials.dart';
 import 'package:quiz_app_frontend/model/login_state.dart';
+import 'package:quiz_app_frontend/pages/quizzes_page.dart';
 
 import '../api_client/rest_client.dart';
 
@@ -96,7 +97,11 @@ class _LoginPageState extends State<LoginPage> {
                             if (context.mounted) {
                               Provider.of<LoginState>(context, listen: false)
                                   .setToken(token);
-                              Navigator.of(context).pop();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => QuizzesPage(),
+                                ),
+                              );
                             }
                           }
                         } else {

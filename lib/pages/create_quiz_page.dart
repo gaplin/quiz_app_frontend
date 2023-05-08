@@ -5,6 +5,7 @@ import 'package:quiz_app_frontend/components/custom_text_field.dart';
 import 'package:quiz_app_frontend/components/question_form.dart';
 import 'package:quiz_app_frontend/model/create_quiz_dto.dart';
 import 'package:quiz_app_frontend/model/login_state.dart';
+import 'package:quiz_app_frontend/pages/quizzes_page.dart';
 
 import '../api_client/rest_client.dart';
 
@@ -25,8 +26,10 @@ class _CreateQuizPageState extends State<CreateQuizPage> {
     final theme = Theme.of(context);
     return Consumer<LoginState>(builder: (context, loginState, child) {
       if (loginState.token == null) {
-        WidgetsBinding.instance
-            .addPostFrameCallback((_) => Navigator.pop(context));
+        WidgetsBinding.instance.addPostFrameCallback(
+            (_) => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => QuizzesPage(),
+                )));
       }
       return Scaffold(
         appBar: CustomAppBar(),
@@ -75,7 +78,11 @@ class _CreateQuizPageState extends State<CreateQuizPage> {
                           final success = await client.createQuiz(quiz);
                           if (context.mounted) {
                             if (success) {
-                              Navigator.of(context).pop();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => QuizzesPage(),
+                                ),
+                              );
                             }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(

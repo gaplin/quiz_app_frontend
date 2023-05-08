@@ -23,7 +23,7 @@ class QuizCard extends StatelessWidget {
         color: theme.colorScheme.primary,
         child: InkWell(
           onTap: () => {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => QuizPage(quizId: quiz.id),
               ),

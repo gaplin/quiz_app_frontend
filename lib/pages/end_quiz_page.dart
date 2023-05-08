@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_frontend/components/custom_app_bar.dart';
 import 'package:quiz_app_frontend/components/title_card.dart';
 import 'package:quiz_app_frontend/pages/quiz_page.dart';
+import 'package:quiz_app_frontend/pages/quizzes_page.dart';
 
 import '../model/quiz.dart';
 
@@ -50,7 +51,11 @@ class EndQuizPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       var nav = Navigator.of(context);
-                      nav.pop();
+                      nav.pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => QuizzesPage(),
+                        ),
+                      );
                     },
                     child: Text('Go back to home screen'),
                   ),
