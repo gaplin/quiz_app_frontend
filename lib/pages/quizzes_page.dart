@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app_frontend/components/quizzes_grid.dart';
 
 import '../api_client/rest_client.dart';
 import '../components/custom_app_bar.dart';
+import '../components/quizzes_grid.dart';
 import '../model/quiz_base.dart';
 
-class QuizzesPage extends StatefulWidget {
-  @override
-  State<QuizzesPage> createState() => _QuizzesPageState();
-}
-
-class _QuizzesPageState extends State<QuizzesPage> {
+class QuizzesPage extends StatelessWidget {
   final RestClient client = RestClient();
-  late Future<List<QuizBase>> quizzesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +14,7 @@ class _QuizzesPageState extends State<QuizzesPage> {
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimaryContainer,
     );
+    var quizzesFuture = client.getAllQuizzes();
     return FutureBuilder<List<QuizBase>>(
       future: quizzesFuture,
       builder: (context, snapshot) {
@@ -52,11 +47,5 @@ class _QuizzesPageState extends State<QuizzesPage> {
         return Text("");
       },
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    quizzesFuture = client.getAllQuizzes();
   }
 }

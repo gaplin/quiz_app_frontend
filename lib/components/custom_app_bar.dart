@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/login_state.dart';
+import '../pages/create_quiz_page.dart';
 import '../pages/login_page.dart';
 import '../pages/register_page.dart';
 
@@ -59,7 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Placeholder(),
+                builder: (context) => CreateQuizPage(),
               ),
             );
           },
