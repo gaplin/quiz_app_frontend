@@ -110,4 +110,14 @@ class RestClient {
     final response = await http.post(uri, body: body, headers: headers);
     return response.statusCode == HttpStatus.ok;
   }
+
+  Future<bool> deleteQuiz(String id) async {
+    final path = '/quizzes/$id';
+    final uri = Uri.https(_apiUrl, path);
+    final headers = {
+      HttpHeaders.authorizationHeader: "Bearer $_token",
+    };
+    final response = await http.post(uri, headers: headers);
+    return response.statusCode == HttpStatus.noContent;
+  }
 }

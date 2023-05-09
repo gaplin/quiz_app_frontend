@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'quiz_card.dart';
 import '../model/quiz_base.dart';
 
-class QuizzesGrid extends StatelessWidget {
+class QuizzesGrid extends StatefulWidget {
   final List<QuizBase> quizzes;
   const QuizzesGrid({
     super.key,
@@ -11,15 +11,29 @@ class QuizzesGrid extends StatelessWidget {
   });
 
   @override
+  State<QuizzesGrid> createState() => _QuizzesGridState();
+}
+
+class _QuizzesGridState extends State<QuizzesGrid> {
+  quizDeletedCallback(String quizId) {
+    setState(() {
+      widget.quizzes.removeWhere((element) => element.id == quizId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-      itemCount: quizzes.length,
+      itemCount: widget.quizzes.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: QuizCard(quiz: quizzes[index]),
+          child: QuizCard(
+            quiz: widget.quizzes[index],
+            quizDeletedCallback: quizDeletedCallback,
+          ),
         );
       },
     );

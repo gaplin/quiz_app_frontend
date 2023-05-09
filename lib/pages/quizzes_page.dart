@@ -5,7 +5,12 @@ import '../components/custom_app_bar.dart';
 import '../components/quizzes_grid.dart';
 import '../model/quiz_base.dart';
 
-class QuizzesPage extends StatelessWidget {
+class QuizzesPage extends StatefulWidget {
+  @override
+  State<QuizzesPage> createState() => _QuizzesPageState();
+}
+
+class _QuizzesPageState extends State<QuizzesPage> {
   final RestClient client = RestClient();
 
   @override
