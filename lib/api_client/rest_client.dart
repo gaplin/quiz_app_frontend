@@ -117,7 +117,7 @@ class RestClient {
     final headers = {
       HttpHeaders.authorizationHeader: "Bearer $_token",
     };
-    final response = await http.post(uri, headers: headers);
+    final response = await http.delete(uri, headers: headers);
     return response.statusCode == HttpStatus.noContent;
   }
 }

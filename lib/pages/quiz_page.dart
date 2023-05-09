@@ -30,10 +30,10 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final titleStyle = theme.textTheme.displayMedium!.copyWith(
+    final titleStyle = theme.textTheme.headlineSmall!.copyWith(
       color: theme.colorScheme.onPrimaryContainer,
     );
-    final bodyStyle = theme.textTheme.bodyLarge!
+    final bodyStyle = theme.textTheme.labelLarge!
         .copyWith(color: theme.colorScheme.onPrimaryContainer);
     return FutureBuilder<Quiz>(
       future: quiz,
@@ -49,14 +49,14 @@ class _QuizPageState extends State<QuizPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 50),
+                    SizedBox(height: 20),
                     Center(
                       child: Text(
                         quiz.title,
                         style: titleStyle,
                       ),
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 20),
                     Center(
                       child: Text(
                         'Question ${questionIndex + 1} of ${quiz.questions.length}',

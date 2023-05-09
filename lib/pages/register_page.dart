@@ -34,8 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
               horizontal: 8,
               vertical: 16,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: ListView(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
