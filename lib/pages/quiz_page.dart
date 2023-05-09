@@ -84,7 +84,7 @@ class _QuizPageState extends State<QuizPage> {
             );
           }
         } else if (snapshot.hasError) {
-          return Text("Error");
+          return Text(snapshot.error.toString());
         }
         return Text("");
       },

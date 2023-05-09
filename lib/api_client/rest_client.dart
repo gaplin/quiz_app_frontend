@@ -24,7 +24,8 @@ class RestClient {
   RestClient.withToken(this._token);
 
   Future<List<QuizBase>> getAllQuizzes() async {
-    final response = await http.get(Uri.https(_apiUrl, 'quizzes/baseInfo'));
+    var uri = Uri.parse('$_apiUrl/quizzes/baseInfo');
+    final response = await http.get(uri);
 
     if (response.statusCode == HttpStatus.ok) {
       List jsonResponse = json.decode(response.body);
@@ -38,8 +39,8 @@ class RestClient {
     var queryParams = {
       'shuffle': 'true',
     };
-    var path = 'quizzes/$id';
-    var uri = Uri.https(_apiUrl, path, queryParams);
+    var uri = Uri.parse('$_apiUrl/quizzes/$id');
+    uri = uri.replace(queryParameters: queryParams);
     final response = await http.get(uri);
 
     if (response.statusCode == HttpStatus.ok) {
@@ -50,8 +51,7 @@ class RestClient {
   }
 
   Future<String> getRole(String id) async {
-    final path = '/users/$id/role';
-    final uri = Uri.https(_apiUrl, path);
+    final uri = Uri.parse('$_apiUrl/users/$id/role');
     final headers = {HttpHeaders.authorizationHeader: 'Bearer $_token'};
     final response = await http.get(uri, headers: headers);
 
@@ -63,8 +63,7 @@ class RestClient {
   }
 
   Future<String?> register(CreateUserFields fields) async {
-    const path = '/users';
-    final uri = Uri.https(_apiUrl, path);
+    final uri = Uri.parse('$_apiUrl/users');
     final headers = {
       "Accept": "application/json",
       "content-type": "application/json"
@@ -81,8 +80,7 @@ class RestClient {
   }
 
   Future<String?> login(Credentials credentials) async {
-    const path = '/login';
-    final uri = Uri.https(_apiUrl, path);
+    final uri = Uri.parse('$_apiUrl/login');
     final body = jsonEncode(credentials.toJson());
     final headers = {
       "Accept": "application/json",
@@ -99,8 +97,7 @@ class RestClient {
   }
 
   Future<bool> createQuiz(CreateQuizDTO dto) async {
-    const path = '/quizzes';
-    final uri = Uri.https(_apiUrl, path);
+    final uri = Uri.parse('$_apiUrl/quizzes');
     final body = jsonEncode(dto.toJson());
     final headers = {
       HttpHeaders.acceptHeader: "application/json",
@@ -112,8 +109,7 @@ class RestClient {
   }
 
   Future<bool> deleteQuiz(String id) async {
-    final path = '/quizzes/$id';
-    final uri = Uri.https(_apiUrl, path);
+    final uri = Uri.parse('$_apiUrl/quizzes/$id');
     final headers = {
       HttpHeaders.authorizationHeader: "Bearer $_token",
     };
