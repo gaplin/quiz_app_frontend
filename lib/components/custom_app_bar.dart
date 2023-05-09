@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         );
         return AppBar(
           automaticallyImplyLeading: false,
-          titleTextStyle: theme.textTheme.displaySmall!.copyWith(
+          titleTextStyle: theme.textTheme.headlineMedium!.copyWith(
             color: theme.colorScheme.onTertiaryContainer,
           ),
           title: MouseRegion(
@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _getActions(LoginState state, BuildContext context) {
     List<Widget> result = [];
     if (state.token == null) {
-      result.add(ElevatedButton(
+      result.add(IconButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -52,10 +52,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           );
         },
-        child: Text('log in'),
+        icon: Icon(Icons.login),
       ));
       result.add(SizedBox(width: 20));
-      result.add(ElevatedButton(
+      result.add(IconButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -63,13 +63,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           );
         },
-        child: Text('Register'),
+        icon: Icon(Icons.app_registration),
       ));
     } else {
       result.add(Text('Hello ${state.userName}'));
-      result.add(SizedBox(width: 30));
+      result.add(SizedBox(width: 20));
       result.add(
-        ElevatedButton(
+        IconButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
@@ -77,20 +77,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             );
           },
-          child: Text('Create Quiz'),
+          icon: Icon(Icons.add),
         ),
       );
-      result.add(SizedBox(width: 30));
+      result.add(SizedBox(width: 20));
       result.add(
-        ElevatedButton(
+        IconButton(
           onPressed: () async {
             await state.setToken(null);
           },
-          child: Text('log out'),
+          icon: Icon(Icons.logout),
         ),
       );
     }
-    result.add(SizedBox(width: 20));
+    result.add(SizedBox(width: 10));
     return result;
   }
 

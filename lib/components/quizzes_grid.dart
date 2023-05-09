@@ -24,8 +24,13 @@ class _QuizzesGridState extends State<QuizzesGrid> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 500,
+        mainAxisExtent: 330,
+        childAspectRatio: 1,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
+      ),
       itemCount: widget.quizzes.length,
       itemBuilder: (context, index) {
         return Padding(

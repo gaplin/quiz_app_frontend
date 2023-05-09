@@ -24,23 +24,20 @@ class QuizCard extends StatelessWidget {
     );
     return Consumer<LoginState>(
       builder: (context, loginState, child) {
-        return Container(
-          constraints: BoxConstraints(minWidth: 500, minHeight: 500),
-          child: Card(
-            color: theme.colorScheme.primary,
-            child: InkWell(
-              onTap: () => {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => QuizPage(quizId: quiz.id),
-                  ),
+        return Card(
+          color: theme.colorScheme.primary,
+          child: InkWell(
+            onTap: () => {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => QuizPage(quizId: quiz.id),
                 ),
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  children: _listViewWidgets(titleStyle, loginState, context),
-                ),
+              ),
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: _listViewWidgets(titleStyle, loginState, context),
               ),
             ),
           ),
@@ -56,17 +53,17 @@ class QuizCard extends StatelessWidget {
         quiz.title,
         style: titleStyle,
       ),
-      SizedBox(height: 50),
+      SizedBox(height: 20),
       Text(
         '${quiz.numberOfQuestions} questions',
         style: titleStyle,
       ),
-      SizedBox(height: 50),
+      SizedBox(height: 20),
       Text(
         'Category: ${quiz.category}',
         style: titleStyle,
       ),
-      SizedBox(height: 50),
+      SizedBox(height: 20),
       Text(
         'Author: ${quiz.author}',
         style: titleStyle,
@@ -109,7 +106,7 @@ class QuizCard extends StatelessWidget {
           continueButton,
         ],
       );
-      result.add(SizedBox(height: 50));
+      result.add(SizedBox(height: 20));
       result.add(
         Center(
           child: ElevatedButton(

@@ -20,7 +20,7 @@ class EndQuizPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final int allAnswers = quiz.questions.length;
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
+    final style = theme.textTheme.headlineSmall!.copyWith(
       color: theme.colorScheme.onPrimaryContainer,
     );
     return Scaffold(
@@ -30,14 +30,14 @@ class EndQuizPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              SizedBox(height: 20),
               Center(
                 child: Text(
                   quiz.title,
                   style: style,
                 ),
               ),
-              SizedBox(height: 100),
+              SizedBox(height: 50),
               SizedBox(
                 width: 700,
                 child: TitleCard(
