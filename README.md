@@ -15,7 +15,7 @@ App can be build for any available environment. Tested on web/windows/android.
 - Adding/deleting quizzes by users
 
 ## Preview
-![image](https://github.com/gaplin/quiz_app_frontend/assets/50521366/c8abba91-1965-4d97-b2ea-67497cc50e3c)
+![image](https://github.com/gaplin/quiz_app_frontend/assets/50521366/e2b49eb1-7c6e-475c-a0b4-ce7ecbad0b06)
 
-![image](https://github.com/gaplin/quiz_app_frontend/assets/50521366/41b1cf44-3a30-426c-a494-ffd579bd540f)
+![image](https://github.com/gaplin/quiz_app_frontend/assets/50521366/216e6b00-a6c7-4f5e-b6a5-191cbd107edc)
 
