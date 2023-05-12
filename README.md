@@ -10,7 +10,7 @@ App can be build for any available environment. Tested on web/windows/android.
   - there is `launch.json` file included for vscode build
   - use `--dart-define-from-file=appsettings.[mode].json` flag for compilation to include variables for json file
 - Managing state by using ChangeNotifier
-- Json serialization by using Source code generator
+- Json serialization with Source code generated mappers
 - User accounts
 - Adding/deleting quizzes by users
 
