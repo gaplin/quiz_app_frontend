@@ -15,7 +15,7 @@ class QuizzesGrid extends StatefulWidget {
 }
 
 class _QuizzesGridState extends State<QuizzesGrid> {
-  quizDeletedCallback(String quizId) {
+  void quizDeletedCallback(String quizId) {
     setState(() {
       widget.quizzes.removeWhere((element) => element.id == quizId);
     });

@@ -20,7 +20,7 @@ class _QuizPageState extends State<QuizPage> {
   var questionIndex = 0;
   late Future<Quiz> quiz;
   var score = 0;
-  callback(bool correctAnswer) {
+  void callback(bool correctAnswer) {
     setState(() {
       if (correctAnswer) score += 1;
       questionIndex++;
