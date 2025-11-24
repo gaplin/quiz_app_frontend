@@ -8,7 +8,7 @@ RUN apt-get install -y curl git unzip xz-utils zip libglu1-mesa
 RUN apt-get clean
 
 # Download flutter sdk
-RUN curl -fL -o "/usr/flutter.tar.xz" https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.32.1-stable.tar.xz
+RUN curl -fL -o "/usr/flutter.tar.xz" https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.38.3-stable.tar.xz
 RUN tar -xf /usr/flutter.tar.xz -C /usr/local
 RUN git config --global --add safe.directory /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
